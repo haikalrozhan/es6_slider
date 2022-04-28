@@ -1,8 +1,8 @@
 import people from "./data.js";
 
 const container = document.querySelector(".slide-container");
-const nextBtn = document.querySelector(".nextBtn");
-const prevBtn = document.querySelector(".prevBtn");
+const nextBtn = document.querySelector(".next-btn");
+const prevBtn = document.querySelector(".prev-btn");
 
 // set slides
 container.innerHTML = people
@@ -34,3 +34,25 @@ container.innerHTML = people
 </article>`;
   })
   .join("");
+
+const startSlider = (type) => {
+  const active = document.querySelector('.active')
+  const last = document.querySelector('.last')
+  let next = active.nextElementSibling
+
+  active.classList.remove(['active'])
+  last.classList.remove(['last'])
+  next.classList.remove(['next'])
+
+  active.classList.add('last')
+  last.classList.add('next')
+  next.classList.add('active')
+  
+};
+
+nextBtn.addEventListener("click", () => {
+  startSlider();
+});
+prevBtn.addEventListener("click", () => {
+  startSlider("prev");
+});
